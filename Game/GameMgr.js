@@ -446,6 +446,7 @@ var g_gameMgr = {
 		var l_gameMgr = this;
 		var l_httpRequest=$.ajax({
 			url:"http://www.geekmouse.net/Server_mx_product/web_gameInterface.php",
+			type:"POST",
 			async:true,
 			success:function(p_data){
 				cc.log(p_data);
