@@ -13,38 +13,38 @@
 			});
 
 		//中心方块
-		$("#game_pause").append("<div id='game_pause_center' class='pause_back'></div>");
+		$("#game_pause").append("<div id='pause_back' class='pause_back'></div>");
 		//统计
-		$("#game_pause").append("<p id='game_pause_state' class='pause_stat'></p>");
+		$("#pause_back").append("<p id='game_pause_state' class='pause_stat'></p>");
 		$("#game_pause_state").append("<hr><p>You are playing today's game <span style='color:red;'>#"+g_gameMgr.globalVisitorToday+"</span>,</p><p>which is also the <span style='color:red;'>#"+g_gameMgr.globalVisitorAll+"</span> game in history on this site</p>");
 
-		var l_btLeft0=125;
-		var l_btLeft1=330;
-		var l_btTop0=580;
-		var l_btTop1=680;
+		var l_btLeft0=65;
+		var l_btLeft1=270;
+		var l_btTop0=480;
+		var l_btTop1=580;
 		//Continue button
-		$("#game_pause").append("<div id='bt_ps_cont' >CONTINUE</div>");
-		$("#bt_ps_cont").addClass("bt_pause").css({"left":l_btLeft0,"top": l_btTop0}).click(function(event) {
+		$("#pause_back").append("<div id='bt_ps_cont' >CONTINUE</div>");
+		$("#bt_ps_cont").addClass("pause_bt").css({"left":l_btLeft0,"top": l_btTop0}).click(function(event) {
 			l_gamePause.gameScene.hideGamePause();
 		});
 
 		//Restart button
-		$("#game_pause").append("<div id='bt_ps_rest' >RESTART</div>");
-		$("#bt_ps_rest").addClass("bt_pause").css({"left":l_btLeft1,"top":l_btTop0}).click(function(event) {
+		$("#pause_back").append("<div id='bt_ps_rest' >RESTART</div>");
+		$("#bt_ps_rest").addClass("pause_bt").css({"left":l_btLeft1,"top":l_btTop0}).click(function(event) {
 			l_gamePause.gameScene.initRandomMap();
 			l_gamePause.gameScene.hideGamePause();	
 		});
 
 		//Tutorial button
-		$("#game_pause").append("<div id='bt_ps_tut' >TUTORIAL</div>");
-		$("#bt_ps_tut").addClass("bt_pause").css({"left":l_btLeft0,"top":l_btTop1}).click(function(event) {
+		$("#pause_back").append("<div id='bt_ps_tut' >TUTORIAL</div>");
+		$("#bt_ps_tut").addClass("pause_bt").css({"left":l_btLeft0,"top":l_btTop1}).click(function(event) {
 			l_gamePause.gameScene.hideGamePause();	
 			l_gamePause.gameScene.showGameTutorial();
 		});
 
 		//Share button
-		$("#game_pause").append("<div id='bt_ps_share' >TWEET IT</div>");
-		$("#bt_ps_share").addClass("bt_pause").css({"left":l_btLeft1,"top":l_btTop1}).click(function(event) {
+		$("#pause_back").append("<div id='bt_ps_share' >TWEET IT</div>");
+		$("#bt_ps_share").addClass("pause_bt").css({"left":l_btLeft1,"top":l_btTop1}).click(function(event) {
 			cc.log("pause clickButton share");
 			var l_maxScore=g_gameMgr.maxScore;
 			var l_url="http://geekmouse.net/games/x-match";
@@ -92,6 +92,7 @@ function ViewPaypal(){
 		$("#view_paypal").css({"z-index" : g_config.zorder.GamePause});
 
 		$("#view_paypal").append("<div id='paypal_back' class='paypal_back'></div>");
+		$("#paypal_back").append("<div id='paypal_words' class='paypal_words'><p>We are now developping iOS/Android verion of X-MATCH. If you love X-Match, we need your support to continue our work. Thanks!</div>");
 
 		$("#paypal_back").append("<div id='paypal_ps' class='paypal_list'></div>");
 		$("#paypal_ps").load("paypal.txt");

@@ -1,25 +1,42 @@
 
 
+.body{
+    min-height:100%;
+    min-width: 100%;
+    background-color:#54ADDC;
+}
+.game_scene{
+    margin: 0 auto;
+    width: 640px;
+    height: 960px;
+    position: relative;
+    text-align:center;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+.title{
+    line-height: 55px;
+    font-size:50px;
+    color:white;
+}
+
+.score{
+    height: 40px;
+    line-height: 40px;
+    font-size:40px;
+    color:#077DBB;
+}
+
 .stat{
     font-family: Helvetica,Arial,sans-serif;
     font-weight:200;
     font-size:20px;
-    color:white;}
+    color:white;
+}
 
-.score{
-    font-family: Impact, Charcoal, sans-serif;
-    left:50%;
-    height: 40px;
-    line-height: 40px;
-    font-size:40px;
-    color:#077DBB;}
-
-.title{
-    font-family: Impact, Charcoal, sans-serif;
-    left:50%;
-    line-height: 55px;
-    font-size:50px;
-    color:white;}
+.brick_bg{
+    position:absolute;
+}
 
 .brick_x{
     position:relative;
@@ -29,7 +46,6 @@
 .brick_number{
     font-size:60px;
     top:50%;
-    font-family: Impact, Charcoal, sans-serif;
     color: white;}
 
 .brick_back{
@@ -48,10 +64,10 @@
     height: 70px;
 }
 
-.bt_pause{
+.pause_bt{
     cursor:pointer;
     position:absolute;
-    font-family: Impact, Charcoal, sans-serif;
+    font-family: sans-serif;
     line-height:80px;
     width: 180px;
     height: 80px;
@@ -79,11 +95,11 @@
 } 
 
 .pause_stat{
-    top: 760px;
-    left: 80px;
+    margin: 0 auto;
+    top: 680px;
     height: 100px; 
     width:480px; 
-    position: absolute;
+    position: relative;
     font-size:15px;
     line-height:6px;
     text-align:left;
@@ -94,11 +110,9 @@
 
 
 .tut_title{
-    text-align:center;
+    margin: 0 auto;
     font-size:60px;
-    top:0px;
-    left: 0px;
-    font-family: Impact, Charcoal, sans-serif;
+    top:-800px;
     color: red;
     position:relative;
     z-index:1000;
@@ -135,9 +149,18 @@
     position:relative;
 }
 
+.paypal_words{
+    margin: 0 auto;
+    text-align: left;
+    padding:20px;
+    line-height: 18px;
+    font-size: 12px;
+    color: #077DBB;
+}
+
 .paypal_list{
     margin: 0 auto;
-    top: 100px;
+    top: 140px;
     position: relative;
     z-index:50;
 }
@@ -145,15 +168,17 @@
 .paypal_bt{
     margin: 0 auto;
     cursor:pointer;
-    position:relative;
+/*    position:relative;*/
     line-height:50px;
     width: 130px;
     height: 50px;
-    top: 170px;
+    top: 190px;
     font-size:25px;
+    font-family: sans-serif;
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
-    background-color:#E5780D;
+    background-color:#077DBB;
+  /*  background-color:#E5780D;*/
     color:white;
     z-index:50;
 }
@@ -161,7 +186,7 @@
 .paypal_bt_cancel{
     margin: 0 auto;
     cursor:pointer;
-    position:relative;
+/*    position:relative;*/
     width: 130px;
     height: 50px;
     top: 220px;
@@ -169,6 +194,7 @@
     background-color:#EEEEFF;
     color:#077DBB;
     z-index:50;
+    font-family: sans-serif;
 }
 
 body, canvas, div {

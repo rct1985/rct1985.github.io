@@ -109,34 +109,25 @@ var GameScene = {
 		cc.log('on control');
 		//this.isTouchEnabled = true;
 	},
-
+	syncSize:function(){
+		var width = $(window).width(); 
+	    var height = $(window).height();
+	    var l_zoomH=height/960;
+	    var l_zoomW=width/960;
+	      $("body").css("zoom",l_zoomH<l_zoomW?l_zoomH:l_zoomW);
+		cc.log("windowSize:("+width+","+height+")"); 
+	},
 	//初始化HTML元素
 	initBg:function(){
 		var l_gameScene = this;
-
-		//$("div#game_scene").append('<p>nihao</p>');
-		$("div#game_scene").width(640).height(960);
-		$("div#game_scene").css({
-			"position" : "relative",
-			"left" : 0 ,
-			"right" : 0,
-			"text-align" : "center",
-			"margin" : "auto"
-			}
-			);
-		//$("div#game_scene").css("left", 0);
-		//$("div#game_scene").css("top", 0);
-
-
-//		$("div#game_scene").text('some text');
-
+		this.syncSize();
+		$(window).resize(function(){l_gameScene.syncSize();});
 		//背景
 		for (var i = 0; i < g_config.gridCount_y; i++) {
 			for(var j = 0; j < g_config.gridCount_x; j++){
-				$("div#game_scene").append("<div id=bg_"+i+""+j+"></div>");
-				$("#bg_"+i+""+j).css("position", "absolute");
-				$("#bg_"+i+""+j).css("left", g_gameMgr.getPositionByGrid(cc.p(j,i)).x);
-				$("#bg_"+i+""+j).css("top", g_gameMgr.getPositionByGrid(cc.p(j,i)).y);
+				$("div#game_scene").append("<div class='brick_bg' id=bg_"+i+""+j+"></div>");
+				//$("#bg_"+i+""+j).css("position", "relative");
+				$("#bg_"+i+""+j).css("left", g_gameMgr.getPositionByGrid(cc.p(j,i)).x).css("top", g_gameMgr.getPositionByGrid(cc.p(j,i)).y);
 
 				var l_strColor = "#"
 				if((i+j)%2 == 0){
@@ -152,8 +143,8 @@ var GameScene = {
 		//格子点击事件
 		for (var i = 0; i < g_config.gridCount_y; i++) {
 			for(var j = 0; j < g_config.gridCount_x; j++){
-				$("div#game_scene").append("<div id='bg_"+i+""+j+"_click'></div>");
-				$("#bg_"+i+""+j+"_click").css("position", "absolute");
+				$("div#game_scene").append("<div class='brick_bg' id='bg_"+i+""+j+"_click'></div>");
+				//$("#bg_"+i+""+j+"_click").css("position", "absolute");
 				$("#bg_"+i+""+j+"_click").css("left", g_gameMgr.getPositionByGrid(cc.p(j,i)).x);
 				$("#bg_"+i+""+j+"_click").css("top", g_gameMgr.getPositionByGrid(cc.p(j,i)).y);
 				$("#bg_"+i+""+j+"_click").css("z-index", g_config.zorder.GameTip);

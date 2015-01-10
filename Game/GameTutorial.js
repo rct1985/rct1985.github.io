@@ -25,8 +25,6 @@
 				if(l_gameTutorial.imgIndex == 1){
 					l_gameTutorial.isTouchEnabled=false;
 					$("#game_tut_img").attr("src","res/UI/Step2.png");
-					//$("#game_tutorial").append("<img id='game_tut_img1' top=9999px src='res/UI/Step2.png'></img>");//假装加载
-					//$("#game_tutorial").append("<div id='game_tutorial_title' class='tut_title' >TUTORIAL</div>");
 					$("#game_tutorial").append("<div id='game_tut_loading' class='tut_load'>Loading... </div>");
 
 				}else{
