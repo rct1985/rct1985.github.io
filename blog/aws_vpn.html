@@ -3,8 +3,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>aws_vpn</title>
-<!-- 2017-10-12 Thu 17:53 -->
+<title>AWS搭建ss服务</title>
+<!-- 2017-10-12 Thu 19:05 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="饶崇涛" />
@@ -137,7 +137,7 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">aws_vpn</h1>
+<h1 class="title">AWS搭建ss服务</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -150,20 +150,26 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-4">1.4. 查看是否开启</a></li>
 </ul>
 </li>
+<li><a href="#sec-2">2. 成本估算</a>
+<ul>
+<li><a href="#sec-2-1">2.1. ec2的运行成本</a></li>
+<li><a href="#sec-2-2">2.2. 流量成本</a></li>
+<li><a href="#sec-2-3">2.3. 结论</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<p>
-搭建shadowsocks
-</p>
-
 <div id="outline-container-sec-1" class="outline-2">
 <h2 id="sec-1"><span class="section-number-2">1</span> aws 上搭建shadowsocks</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 工作需要, 加上越来越不靠谱第三方VPN服务, 需要搭建一个自己的ss(Shadowsocks)服务器, 以下记录以备忘
-首先购买一个amazon的Ec2服务并启动一个实例, 这个官网有详细的说明. <a href="https://amazonaws-china.com/cn/">https://amazonaws-china.com/cn/</a>
-而且,帐号注册第一年是基本免费的. 免的是ec2实例的运行费用, 如果你不是,存储特别大或传输特别多的时,基本就是完成免费
+</p>
+
+<p>
+首先购买一个amazon的Ec2服务并启动一个实例, 这个 <a href="https://amazonaws-china.com/cn/">Amazon AWS官网</a>有详细的说明
+而且,帐号注册第一年是基本免费的. 免的是ec2实例的运行费用, 如果你不是,存储特别大或传输特别多的时,基本就是完全免费
 </p>
 </div>
 
@@ -181,36 +187,30 @@ for the JavaScript code in this tag.
 <h3 id="sec-1-2"><span class="section-number-3">1.2</span> 配置config.json文件</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-  mkdir Shadowsocks
-  cd Shadowssocks
-  touch config.json
-  emacs config.json
-  内容大致如下
-  {
- "server":"0.0.0.0",
- "server<sub>port</sub>":443,
- "local<sub>address</sub>":"127.0.0.1",
- "local<sub>port</sub>":1080,
- "password":"your<sub>password</sub>",
- "timeout":300,
- "method":"aes-256-cfb",
- "fast<sub>open</sub>":false,
- "workers":2
-}
+mkdir Shadowsocks
+cd Shadowssocks
+touch config.json
+emacs config.json
+内容大致如下:
 </p>
+<ul class="org-ul">
+<li><img src="./aws_vpn/aws_vpn_ssserver_config.png" alt="aws_vpn_ssserver_config.png" />
+</li>
+</ul>
 </div>
 </div>
 <div id="outline-container-sec-1-3" class="outline-3">
 <h3 id="sec-1-3"><span class="section-number-3">1.3</span> 开启服务</h3>
 <div class="outline-text-3" id="text-1-3">
-<p>
-ssserver -c ./config.json
-或
-sudo /usr/local/bin/ssserver -c ./config.json -d start
-同理 restart stop 进行开关控制
-</p>
 <ul class="org-ul">
-<li>ssserver 其它参数选项
+<li>ssserver -c ./config.json
+或
+</li>
+<li>sudo /usr/local/bin/ssserver -c ./config.json -d start
+同理 restart stop 进行开关控制
+ssserver 其它参数选项
+</li>
+<li><img src="./aws_vpn/aws_vpn_ssserver_restart.png" alt="aws_vpn_ssserver_restart.png" />
 </li>
 </ul>
 </div>
@@ -219,16 +219,63 @@ sudo /usr/local/bin/ssserver -c ./config.json -d start
 <div id="outline-container-sec-1-4" class="outline-3">
 <h3 id="sec-1-4"><span class="section-number-3">1.4</span> 查看是否开启</h3>
 <div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>netstat -tunlp
+</li>
+<li><img src="./aws_vpn/aws_vpn_netstate.png" alt="aws_vpn_netstate.png" />
+</li>
+</ul>
 <p>
-netstat -tunlp
+以上是技术操作层面的东西
 </p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 成本估算</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> ec2的运行成本</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><img src="./aws_vpn/aws_vpn_ec2_price.png" alt="aws_vpn_ec2_price.png" />
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 流量成本</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li><img src="./aws_vpn/aws_vpn_data_trans_price.png" alt="aws_vpn_data_trans_price.png" />
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 结论</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>选择最低配的ec2实例，每月按750小时算，20~30块左右，第一年免费。流量费用，这个和用多少有点关系，如果只是查个资料，偶尔看个视频等，估计也就0~５块左右。
+</li>
+</ul>
+<p>
+花费角度上讲，和当前一些第三方的商业“网络加速”服务提供商的价格相比，差不太多甚至更便宜一些。
+</p>
+<ul class="org-ul">
+<li>优点：稳定，受政策影响小
+</li>
+<li>缺点：有一定技术要求，有一定维护上的时间成本
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: 饶崇涛</p>
-<p class="date">Created: 2017-10-12 Thu 17:53</p>
+<p class="date">Created: 2017-10-12 Thu 19:05</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"></p>
 </div>
